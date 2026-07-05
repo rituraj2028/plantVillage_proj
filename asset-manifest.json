@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/plantVillage_proj/static/css/main.71d072cd.css",
+    "main.js": "/plantVillage_proj/static/js/main.b70c9942.js",
+    "static/js/453.be3162db.chunk.js": "/plantVillage_proj/static/js/453.be3162db.chunk.js",
+    "static/media/bg.png": "/plantVillage_proj/static/media/bg.d68360469fb8473444cf.png",
+    "index.html": "/plantVillage_proj/index.html",
+    "main.71d072cd.css.map": "/plantVillage_proj/static/css/main.71d072cd.css.map",
+    "main.b70c9942.js.map": "/plantVillage_proj/static/js/main.b70c9942.js.map",
+    "453.be3162db.chunk.js.map": "/plantVillage_proj/static/js/453.be3162db.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.71d072cd.css",
+    "static/js/main.b70c9942.js"
+  ]
+}
