@@ -2,6 +2,7 @@ from google.cloud import storage
 import tensorflow as tf
 from PIL import Image
 import numpy as np
+from flask import jsonify
 import os
 import functions_framework
 
@@ -20,6 +21,13 @@ def download_model():
 
 @functions_framework.http
 def predict(request):
+    headers ={
+        "Access-Control-Allow-Origin":"https://rituraj2028.github.io",
+        "Access-Control-Allow-Methods":"POST, OPTIONS",
+        "Access-Control-Allow-Headers":"Content-Type",
+    }
+    if request.method == "OPTIONS":
+        return ("",204,headers)
     global model
     if model is None:
        download_model()
@@ -30,12 +38,7 @@ def predict(request):
     image =np.array(Image.open(image).convert("RGB").resize((256,256)))
     
     img_array = tf.expand_dims(image,0)
-    print("shape:",image.shape)
-    print("min:",image.min())
-    print("max:",image.max())
-    print(image[0][0])
-    print(image[10][10])
-
+    
     predictions = model.predict(img_array)
     print("Predictions:",predictions)
     for i,p in enumerate(predictions[0]):
@@ -43,9 +46,9 @@ def predict(request):
     print("Predicted index:",np.argmax(predictions[0]))
 
     predicted_class = class_names[np.argmax(predictions[0])]
-    confidence = float(100 * (np.max(predictions[0])))
+    confidence = float((np.max(predictions[0])))
 
-    return {"class": str(predicted_class),"confidence": round(confidence, 2)}
+    return (jsonify({"class": str(predicted_class),"confidence": round(confidence, 4)}),200,headers,)
 
 
     
